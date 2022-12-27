@@ -1,3 +1,5 @@
+CREATE DATABASE music_servise;
+
 CREATE TABLE genre
 (
 	genre_ID int  PRIMARY KEY,
@@ -5,10 +7,10 @@ CREATE TABLE genre
 );
 
 CREATE TABLE performer
-(	performer_ID int PRIMARY KEY,
-	performer_name text NOT NULL
+(
+	performer_ID int PRIMARY KEY,
+	performer_name text NOT NULL,
 );
-
 
 CREATE TABLE genre_performer
 (
@@ -21,7 +23,7 @@ CREATE TABLE album
 (
 	album_ID int PRIMARY KEY,
 	album_name TEXT NOT NULL,
-	year_of_production varchar(4)
+	year_of_production varchar(4),
 );
 
 CREATE TABLE performer_album
@@ -42,12 +44,14 @@ CREATE TABLE track
 CREATE TABLE collection
 (
 	collection_ID int PRIMARY KEY,
+	collection_name TEXT NOT NULL,
 	year_of_production varchar(4)
 );
 
 CREATE TABLE track_collection
 (
 	fk_track_ID int REFERENCES track(track_ID) NOT NULL,
-	fk_collection_ID int REFERENCES collection(collection_ID) NOT NULL,
-	CONSTRAINT pk_track_collection PRIMARY KEY (fk_track_ID,fk_collection_ID)
+	fk_colletion_ID int REFERENCES collection(collection_ID) NOT NULL
+	CONSTRAINT pk_track_collection PRIMARY KEY (fk_track_ID, fk_collection_ID)
 )
+
